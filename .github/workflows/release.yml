@@ -44,12 +44,8 @@ jobs:
         run: |
           if [ -n "$KEYSTORE_BASE64" ]; then
             echo "$KEYSTORE_BASE64" | base64 -d > whitertc-release.jks
-            cat << EOF > keystore.properties
-            storeFile=whitertc-release.jks
-            storePassword=$KEYSTORE_PASSWORD
-            keyAlias=${KEY_ALIAS:-whitertc}
-            keyPassword=${KEY_PASSWORD:-$KEYSTORE_PASSWORD}
-            EOF
+            printf "storeFile=whitertc-release.jks\nstorePassword=%s\nkeyAlias=%s\nkeyPassword=%s\n" \
+              "$KEYSTORE_PASSWORD" "${KEY_ALIAS:-whitertc}" "${KEY_PASSWORD:-$KEYSTORE_PASSWORD}" > keystore.properties
             echo "Android signing credentials configured."
           else
             echo "No KEYSTORE_BASE64 provided, skipping release signing."
