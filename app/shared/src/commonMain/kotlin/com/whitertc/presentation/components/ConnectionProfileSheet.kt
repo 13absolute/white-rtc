@@ -474,23 +474,25 @@ private fun ProfileAddView(
                         }
                     )
 
+                    val defaultChannelOptions = remember { listOf(8, 12, 16, 20, 24) }
                     val matchedProvider = if (trimmedBackup.isNotBlank()) {
                         backupValidation?.provider ?: RelayProviderRegistry.findProvider(trimmedBackup)
                     } else null
                     val channelConfig = matchedProvider?.channelConfig
-
-                    if (channelConfig != null) {
-                        val channelOptions = remember(channelConfig) {
+                    val channelOptions = remember(channelConfig) {
+                        if (channelConfig != null) {
                             (channelConfig.range.first..channelConfig.range.last step channelConfig.step).toList()
+                        } else {
+                            defaultChannelOptions
                         }
-
-                        Spacer(modifier = Modifier.height(14.dp))
-                        RelayChannelsSelector(
-                            selectedChannels = selectedChannels,
-                            onChannelsSelected = { selectedChannels = it },
-                            channelOptions = channelOptions
-                        )
                     }
+
+                    Spacer(modifier = Modifier.height(14.dp))
+                    RelayChannelsSelector(
+                        selectedChannels = selectedChannels,
+                        onChannelsSelected = { selectedChannels = it },
+                        channelOptions = channelOptions
+                    )
                 }
             }
         }
@@ -588,7 +590,7 @@ private fun ProfileAddView(
                     val portsSummary = if (parsedProfile.serverPorts.size > 1) {
                         stringResource(Res.string.profile_sheet_ports_fmt, parsedProfile.serverPorts.size)
                     } else ""
-                    val channelsSummary = if (isBackupRouteEnabled && backupValidation?.provider?.channelConfig != null) {
+                    val channelsSummary = if (isBackupRouteEnabled) {
                         stringResource(Res.string.profile_sheet_streams_fmt, selectedChannels)
                     } else ""
 
@@ -761,8 +763,7 @@ private fun ProfileCardItem(
                 }
 
                 val channelsSummary = if (profile.providerType != TurnProviderType.DIRECT_WEBRTC || profile.signalingSource.isNotBlank()) {
-                    val provider = RelayProviderRegistry.findProvider(profile.signalingSource) ?: RelayProviderRegistry.get(profile.providerType.id)
-                    if (provider?.channelConfig != null) stringResource(Res.string.profile_sheet_streams_fmt, profile.parallelChannels) else ""
+                    stringResource(Res.string.profile_sheet_streams_fmt, profile.parallelChannels)
                 } else ""
 
                 val hostText = if (profile.serverHost.isNotBlank()) "${profile.serverHost}:${profile.serverPort}" else stringResource(Res.string.profile_sheet_no_address)
@@ -1001,25 +1002,27 @@ private fun ProfileEditView(
                         }
                     )
 
+                    val defaultChannelOptions = remember { listOf(8, 12, 16, 20, 24) }
                     val matchedProvider = if (trimmedLink.isNotBlank()) {
                         validationResult?.provider ?: RelayProviderRegistry.findProvider(trimmedLink)
                     } else {
                         RelayProviderRegistry.get(profile.providerType.id)
                     }
                     val channelConfig = matchedProvider?.channelConfig
-
-                    if (channelConfig != null) {
-                        val channelOptions = remember(channelConfig) {
+                    val channelOptions = remember(channelConfig) {
+                        if (channelConfig != null) {
                             (channelConfig.range.first..channelConfig.range.last step channelConfig.step).toList()
+                        } else {
+                            defaultChannelOptions
                         }
-
-                        Spacer(modifier = Modifier.height(14.dp))
-                        RelayChannelsSelector(
-                            selectedChannels = selectedChannels,
-                            onChannelsSelected = { selectedChannels = it },
-                            channelOptions = channelOptions
-                        )
                     }
+
+                    Spacer(modifier = Modifier.height(14.dp))
+                    RelayChannelsSelector(
+                        selectedChannels = selectedChannels,
+                        onChannelsSelected = { selectedChannels = it },
+                        channelOptions = channelOptions
+                    )
                 }
             }
         }

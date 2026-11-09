@@ -36,7 +36,7 @@ koinCompiler {
     strictSafety = true
 }
 
-val desktopVersionName = "1.0.0"
+val desktopVersionName = "1.0.1"
 
 compose.desktop {
     application {

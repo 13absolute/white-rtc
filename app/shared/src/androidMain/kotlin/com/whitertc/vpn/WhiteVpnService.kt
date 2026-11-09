@@ -77,6 +77,7 @@ class WhiteVpnService : VpnService(), KoinComponent {
     private var vpnInterface: ParcelFileDescriptor? = null
     private var proxyClient: WhiteRtcClient? = null
     private val isRunning = AtomicBoolean(false)
+    private val isInitialConnectionDone = AtomicBoolean(false)
 
     private val vpnNetworkManager by lazy { VpnNetworkManager(this) }
     private val hotspotIpDetector by lazy { HotspotIpDetector(this) }
@@ -446,6 +447,7 @@ class WhiteVpnService : VpnService(), KoinComponent {
                 val err = result.exceptionOrNull()
                 throw err ?: IllegalStateException("Failed to start WhiteRTC client")
             }
+            isInitialConnectionDone.set(true)
 
         } catch (e: CancellationException) {
             WhiteLogger.i(TAG) { "Tunnel startup cancelled by user" }
@@ -460,6 +462,7 @@ class WhiteVpnService : VpnService(), KoinComponent {
 
     private fun stopTunnel() {
         val wasRunning = isRunning.getAndSet(false)
+        isInitialConnectionDone.set(false)
 
         tunnelJob?.cancel()
         tunnelJob = null
@@ -552,13 +555,17 @@ class WhiteVpnService : VpnService(), KoinComponent {
                 WhiteLogger.i(TAG) { "[NET] Physical network available ($network)." }
                 acquireTransientWakeLock(3000L)
                 updateUnderlyingNetwork(network)
-                serviceScope.launch { proxyClient?.reconnect() }
+                if (isInitialConnectionDone.get() && proxyClient?.status?.value is TunnelStatus.Connected) {
+                    serviceScope.launch { proxyClient?.reconnect() }
+                }
             }
             PhysicalNetworkTransition.CHANGED -> {
                 WhiteLogger.i(TAG) { "[NET] Physical network changed ($network). Performing seamless socket migration..." }
                 acquireTransientWakeLock(3000L)
                 updateUnderlyingNetwork(network)
-                serviceScope.launch { proxyClient?.reconnect() }
+                if (isInitialConnectionDone.get() && proxyClient?.status?.value is TunnelStatus.Connected) {
+                    serviceScope.launch { proxyClient?.reconnect() }
+                }
             }
             PhysicalNetworkTransition.UNAVAILABLE -> {
                 WhiteLogger.w(TAG) { "[NET] All physical networks unavailable. Waiting for network without tearing down tun0..." }

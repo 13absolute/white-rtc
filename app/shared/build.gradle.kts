@@ -49,7 +49,7 @@ kotlin {
             implementation(libs.sqlite.bundled)
         }
         commonMain.dependencies {
-            api("com.github.13absolute.whitertc-core:core:1.0.0")
+            api("com.github.13absolute.whitertc-core:core:1.0.1")
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)

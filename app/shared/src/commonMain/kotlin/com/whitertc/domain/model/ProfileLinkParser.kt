@@ -1,5 +1,6 @@
 package com.whitertc.domain.model
 
+import com.whitertc.core.config.WhiteRtcConfig
 import kotlin.time.Clock
 
 object ProfileLinkParser {
@@ -48,8 +49,9 @@ object ProfileLinkParser {
             val hostPortPart = beforeFragment.substringBefore('?')
             val queryPart = if (beforeFragment.contains('?')) beforeFragment.substringAfter('?') else ""
 
+            val defaultPort = WhiteRtcConfig.DEFAULT_SERVER_PORTS.first()
             val host = hostPortPart.substringBefore(':').trim()
-            val port = hostPortPart.substringAfter(':', "3478").trim().toIntOrNull() ?: 3478
+            val port = if (hostPortPart.contains(':')) hostPortPart.substringAfter(':').trim().toIntOrNull() ?: defaultPort else defaultPort
 
             val queryParams = if (queryPart.isNotBlank()) {
                 queryPart.split('&').associate { param ->
@@ -75,7 +77,11 @@ object ProfileLinkParser {
 
             val portsParam = queryParams["ports"]
             val parsedPorts = portsParam?.split(',')?.mapNotNull { it.trim().toIntOrNull() }?.filter { it in 1..65535 }
-            val serverPorts = if (!parsedPorts.isNullOrEmpty()) parsedPorts else listOf(port)
+            val serverPorts = if (!parsedPorts.isNullOrEmpty()) {
+                parsedPorts
+            } else {
+                listOf(port) + WhiteRtcConfig.DEFAULT_SERVER_PORTS.drop(1)
+            }
 
             val channelsParam = queryParams["channels"]?.toIntOrNull()
                 ?: queryParams["parallelChannels"]?.toIntOrNull()
@@ -98,14 +104,16 @@ object ProfileLinkParser {
         }
 
         // Raw host or host:port
+        val defaultPort = WhiteRtcConfig.DEFAULT_SERVER_PORTS.first()
         val hostPart = input.substringBefore(':').trim()
-        val portPart = if (input.contains(':')) input.substringAfter(':').trim().toIntOrNull() ?: 3478 else 3478
+        val portPart = if (input.contains(':')) input.substringAfter(':').trim().toIntOrNull() ?: defaultPort else defaultPort
 
         if (hostPart.matches(Regex("^[a-zA-Z0-9.-]+$")) && !hostPart.startsWith("http")) {
+            val defaultPorts = listOf(portPart) + WhiteRtcConfig.DEFAULT_SERVER_PORTS.drop(1)
             return ParsedServerEndpoint(
                 host = hostPart,
                 port = portPart,
-                serverPorts = listOf(portPart),
+                serverPorts = defaultPorts,
                 secret = "",
                 name = null,
                 signalingSource = "",

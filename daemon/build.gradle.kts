@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.whitertc"
-version = "1.0.0"
+version = "1.0.1"
 
 application {
     mainClass.set("com.whitertc.daemon.MainKt")
@@ -49,7 +49,7 @@ koinCompiler {
 }
 
 dependencies {
-    api("com.github.13absolute.whitertc-core:core:1.0.0")
+    api("com.github.13absolute.whitertc-core:core:1.0.1")
     implementation(libs.logback)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.json)
