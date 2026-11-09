@@ -35,10 +35,34 @@ jobs:
         run: |
           yes | sdkmanager --licenses 2>/dev/null || true
 
+      - name: Setup Android Keystore from GitHub Secrets
+        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 -d > whitertc-release.jks
+          cat << EOF > keystore.properties
+          storeFile=whitertc-release.jks
+          storePassword=$KEYSTORE_PASSWORD
+          keyAlias=${KEY_ALIAS:-whitertc}
+          keyPassword=${KEY_PASSWORD:-$KEYSTORE_PASSWORD}
+          EOF
+          echo "Android signing credentials configured."
+
       - name: Build Android App & Desktop App
         run: |
           chmod +x gradlew build_daemon_native.sh
-          ./gradlew :app:androidApp:assembleDebug :desktopApp:packageDeb --no-daemon
+          if [ -f "keystore.properties" ]; then
+            echo "==> Building signed Release APK..."
+            ./gradlew :app:androidApp:assembleRelease :desktopApp:packageDeb --no-daemon
+          else
+            echo "==> Building Debug APK (no keystore provided)..."
+            ./gradlew :app:androidApp:assembleDebug :desktopApp:packageDeb --no-daemon
+          fi
+
 
       - name: Build Native Linux Daemon
         run: |
