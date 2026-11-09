@@ -1,0 +1,10 @@
+<resources>
+    <string name="vpn_notification_channel_name" translatable="false">WhiteRTC VPN</string>
+    <string name="vpn_notification_channel_desc">Статус и скорость подключения WhiteRTC</string>
+    <string name="vpn_notification_recovering">Восстановление туннеля...</string>
+    <string name="vpn_notification_connecting">Подключение к туннелю...</string>
+    <string name="vpn_notification_error_title">WhiteRTC • Ошибка</string>
+    <string name="vpn_notification_disconnected">Туннель отключен</string>
+    <string name="vpn_notification_action_stop">ОТКЛЮЧИТЬ</string>
+    <string name="logs_share_chooser_title">Поделиться логами WhiteRTC</string>
+</resources>

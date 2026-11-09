@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WhiteRTC</string>
+    <string name="quick_settings_tile_label">WhiteRTC</string>
+    <string name="tile_connected">Подключено</string>
+    <string name="tile_connecting">Подключение...</string>
+    <string name="tile_disconnected">Отключено</string>
+    <string name="tile_error">Ошибка</string>
+</resources>

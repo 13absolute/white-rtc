@@ -1,0 +1,223 @@
+<resources>
+    <!-- Common -->
+    <string name="common_ok">ОК</string>
+    <string name="common_cancel">Отмена</string>
+    <string name="common_save">Сохранить</string>
+    <string name="common_delete">Удалить</string>
+    <string name="common_retry">Повторить</string>
+    <string name="common_close">Закрыть</string>
+    <string name="common_loading">Загрузка...</string>
+    <string name="common_paste">Вставить</string>
+    <string name="common_clear">Очистить</string>
+    <string name="common_copy">Копировать</string>
+    <string name="common_copied">СКОПИРОВАНО</string>
+    <string name="common_back">Назад</string>
+    <string name="common_add">Добавить</string>
+    <string name="common_edit">Редактировать</string>
+    <string name="common_not_set">не задано</string>
+    <string name="common_details">Подробнее</string>
+    <string name="common_expand">Развернуть</string>
+    <string name="common_collapse">Свернуть</string>
+
+    <!-- Main Screen & Connection Hero -->
+    <string name="main_settings_desc">Настройки</string>
+    <string name="hero_secured">ЗАЩИЩЕНО</string>
+    <string name="hero_disconnect">ОТКЛЮЧИТЬ</string>
+    <string name="hero_syncing">СИНХРОНИЗАЦИЯ</string>
+    <string name="hero_channels_fmt">%1$d ПОТОКОВ</string>
+    <string name="hero_connect">ПОДКЛЮЧИТЬ</string>
+    <string name="hero_retry">ПОВТОРИТЬ</string>
+    <string name="hero_tap_to_start">НАЖМИТЕ ДЛЯ СТАРТА</string>
+    <string name="hero_tap_to_reconnect">НАЖМИТЕ ДЛЯ ПОВТОРА</string>
+    <string name="hero_target_label">ЦЕЛЬ:</string>
+    <string name="hero_tap_to_select_server">НАЖМИТЕ ДЛЯ ВЫБОРА СЕРВЕРА</string>
+
+    <!-- Telemetry & Metrics -->
+    <string name="telemetry_tab_traffic">ТРАФИК</string>
+    <string name="telemetry_tab_channels">КАНАЛЫ</string>
+    <string name="telemetry_btn_streams_fmt">ПОТОКИ (%1$d) ⇄</string>
+    <string name="telemetry_btn_traffic">ТРАФИК ⇄</string>
+    <string name="telemetry_downlink">ВХОДЯЩИЙ</string>
+    <string name="telemetry_uplink">ИСХОДЯЩИЙ</string>
+    <string name="telemetry_session_volume">ОБЪЕМ СЕССИИ</string>
+    <string name="telemetry_total_packets">ВСЕГО ПАКЕТОВ</string>
+    <string name="telemetry_details_btn">ПОДРОБНЕЕ →</string>
+    <string name="telemetry_network_title">ТЕЛЕМЕТРИЯ СЕТИ</string>
+    <string name="telemetry_subflows_fmt">%1$d WEBRTC ПОТОКОВ</string>
+    <string name="telemetry_summary_fmt">%1$d АКТИВНЫХ • 0 ПОТЕРЬ • %2$dB MTU</string>
+    <string name="telemetry_in">ВХОД</string>
+    <string name="telemetry_out">ВЫХОД</string>
+    <string name="telemetry_framing">ФРЕЙМИНГ</string>
+    <string name="telemetry_cipher">ШИФР</string>
+
+    <!-- Speed Test Benchmark -->
+    <string name="speedtest_title">ТЕСТ ПРОПУСКНОЙ СПОСОБНОСТИ</string>
+    <string name="speedtest_btn_start">ТЕСТ СКОРОСТИ →</string>
+    <string name="speedtest_btn_retest">ПОВТОРИТЬ ТЕСТ →</string>
+    <string name="speedtest_btn_retry">ПОВТОРИТЬ</string>
+    <string name="speedtest_status_pass">УСПЕХ</string>
+    <string name="speedtest_efficiency_fmt">ЭФФЕКТИВНОСТЬ: %1$s%%</string>
+    <string name="speedtest_raw_vpn_fmt">ПРЯМОЙ: %1$sM • VPN: %2$sM</string>
+    <string name="speedtest_live_fmt">СКОРОСТЬ: ↓ %1$s | ↑ %2$s</string>
+    <string name="speedtest_error_fmt">ОШИБКА: %1$s</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">НАСТРОЙКИ</string>
+    <string name="settings_hotspot_title">РАЗДАЧА ПРОКСИ (SOCKS5 / HTTP)</string>
+    <string name="settings_hotspot_desc">Раздавать защищённый туннель на другие устройства через точку доступа Wi-Fi</string>
+    <string name="settings_hotspot_active">ТОЧКА ДОСТУПА АКТИВНА</string>
+    <string name="settings_hotspot_client_url">СТРОКА ПОДКЛЮЧЕНИЯ ДЛЯ КЛИЕНТОВ</string>
+    <string name="settings_hotspot_ip_label">IP АДРЕС В СЕТИ WI-FI</string>
+    <string name="settings_hotspot_port_label">ПОРТ ПРОКСИ-СЕРВЕРА</string>
+    <string name="settings_hotspot_mode_label">РЕЖИМ</string>
+    <string name="settings_hotspot_hint">💡 Укажите этот адрес в параметрах прокси на подключаемом устройстве (ноутбук, ТВ, приставка). Трафик пойдет через зашифрованный туннель телефона.</string>
+    <string name="settings_hotspot_inactive">ТОЧКА ДОСТУПА ВЫКЛЮЧЕНА</string>
+    <string name="settings_hotspot_inactive_desc">Прокси-сервер запущен на порту %1$d. Включите «Точку доступа Wi-Fi» на телефоне, чтобы клиентские устройства могли подключиться к этой сети.</string>
+    <string name="settings_hotspot_btn">НАСТРОЙКИ ТОЧКИ ДОСТУПА</string>
+    <string name="settings_rules_title">ПРАВИЛА И РЕЛЕЙ</string>
+    <string name="settings_rules_desc">Шаблоны белого списка провайдера, принудительный релей и прямой канал.</string>
+    <string name="settings_mode_direct">Direct</string>
+    <string name="settings_mode_relay">Релей</string>
+    <string name="settings_bypass_lan_title">ОБХОД ЛОКАЛЬНОЙ СЕТИ</string>
+    <string name="settings_bypass_lan_desc">Исключать приватные IP (192.168.x.x, 10.x.x.x, 172.16.x.x) из туннеля для прямого доступа к роутеру, принтерам и серверам.</string>
+    <string name="settings_split_tunneling_title">РАЗДЕЛЬНОЕ ТУННЕЛИРОВАНИЕ</string>
+    <string name="settings_split_all">Весь трафик приложений направляется через VPN</string>
+    <string name="settings_split_exclude_fmt">Черный список: %1$d прил. идут в обход VPN</string>
+    <string name="settings_split_include_fmt">Белый список: %1$d прил. идут через VPN</string>
+    <string name="settings_plugins_title">ПЛАГИНЫ РЕЛЕЕВ</string>
+    <string name="settings_plugins_desc">Внешние модули для промежуточной маршрутизации</string>
+    <string name="settings_plugins_empty">Нет установленных плагинов</string>
+    <string name="settings_plugins_builtin">Встроенный</string>
+    <string name="settings_plugins_external">Внешний модуль</string>
+    <string name="settings_plugins_install_btn">+ УСТАНОВИТЬ ПЛАГИН</string>
+    <string name="settings_plugins_delete_desc">Удалить плагин</string>
+    <string name="settings_plugins_install_error">Ошибка установки плагина</string>
+    <string name="settings_debug_title">ОТЛАДКА И ДИАГНОСТИКА</string>
+    <string name="settings_debug_desc">Запись подробных сетевых логов (STUN, DTLS, релеи, пробы сети) в файл debug_log.txt</string>
+    <string name="settings_debug_log_size">РАЗМЕР ФАЙЛА ЛОГОВ</string>
+    <string name="settings_debug_mode">РЕЖИМ ЗАПИСИ</string>
+    <string name="settings_debug_mode_desc">Ring-Buffer (лимит 2 МБ с авторотацией)</string>
+    <string name="settings_debug_download">СКАЧАТЬ ЛОГИ</string>
+    <string name="settings_debug_clear">ОЧИСТИТЬ</string>
+    <string name="settings_debug_hint">💡 Логи сохраняются в файл debug_log.txt. Нажмите «СКАЧАТЬ ЛОГИ», чтобы поделиться файлом для диагностики.</string>
+    <string name="settings_about_title">О ПРИЛОЖЕНИИ</string>
+    <string name="settings_about_version">ВЕРСИЯ</string>
+    <string name="settings_about_protocol">ПРОТОКОЛ</string>
+    <string name="settings_about_standards">СТАНДАРТЫ</string>
+    <string name="settings_about_platform">ПЛАТФОРМА</string>
+    <string name="settings_about_github">GITHUB</string>
+    <string name="settings_donate_btc_title">ПОДДЕРЖАТЬ ПРОЕКТ (BTC)</string>
+    <string name="settings_donate_btc_desc">Донат на инфраструктуру и развитие WhiteRTC</string>
+    <string name="settings_donate_btc_copied">Bitcoin-адрес скопирован в буфер обмена</string>
+
+    <!-- Routing Rules Screen -->
+    <string name="routing_title">ПРАВИЛА И РЕЛЕЙ</string>
+    <string name="routing_desc">Политика маршрутизации определяет способ передачи трафика: напрямую на VPS, через защищенный промежуточный релей или адаптивно по правилам шаблона.</string>
+    <string name="routing_mode_title">РЕЖИМ МАРШРУТИЗАЦИИ</string>
+    <string name="routing_mode_template_title">ПО ШАБЛОНУ ПРАВИЛ</string>
+    <string name="routing_mode_template_desc">Прямое подключение к серверу с автоматическим переключением на релей по условиям активного шаблона.</string>
+    <string name="routing_mode_direct_title">ТОЛЬКО ПРЯМОЙ КАНАЛ</string>
+    <string name="routing_mode_direct_desc">Строго прямое соединение с сервером по параллельным UDP-портам. Резервные релеи полностью отключены.</string>
+    <string name="routing_mode_relay_title">ТОЛЬКО РЕЛЕЙ</string>
+    <string name="routing_mode_relay_desc">Весь трафик направляется через промежуточный сервер (TURN / VK Calls). Прямой IP-адрес VPS скрыт.</string>
+    <string name="routing_templates_title">ШАБЛОНЫ И ПРАВИЛА</string>
+    <string name="routing_btn_add">+ ДОБАВИТЬ ПРАВИЛО</string>
+    <string name="routing_default_tag">· по умолчанию</string>
+    <string name="routing_spec_if_unreachable">ЕСЛИ НЕДОСТУПНЫ</string>
+    <string name="routing_spec_if_reachable">И ДОСТУПНЫ</string>
+    <string name="routing_spec_action">ДЕЙСТВИЕ</string>
+    <string name="routing_spec_action_val">Релей (возврат: %1$dс)</string>
+    <string name="routing_new_rule_title">НОВОЕ ПРАВИЛО</string>
+    <string name="routing_edit_rule_title">РЕДАКТИРОВАНИЕ ПРАВИЛА</string>
+    <string name="routing_template_name_label">НАЗВАНИЕ ШАБЛОНА</string>
+    <string name="routing_template_name_hint">Например: Мобильный интернет</string>
+    <string name="routing_unreachable_title">КОНТРОЛЬНЫЕ ВНЕШНИЕ РЕСУРСЫ</string>
+    <string name="routing_unreachable_desc">Внешние ресурсы. Если они недоступны — это сигнал сбоя прямого канала связи.</string>
+    <string name="routing_host_hint">domain.com или IP</string>
+    <string name="routing_reachable_title">КОНТРОЛЬНЫЕ ЛОКАЛЬНЫЕ РЕСУРСЫ</string>
+    <string name="routing_reachable_desc">Доверенные локальные ресурсы. Если они доступны, а внешние нет — активируется резервный релей.</string>
+    <string name="routing_probe_timeout">ТАЙМАУТ ПРОВЕРКИ</string>
+    <string name="routing_recovery_interval">ИНТЕРВАЛ ВОЗВРАТА С РЕЛЕЯ</string>
+    <string name="routing_default_name">Правило</string>
+
+    <!-- Split Tunneling Screen -->
+    <string name="split_title">МАРШРУТИЗАЦИЯ ПРИЛОЖЕНИЙ</string>
+    <string name="split_mode_all">ВСЕ В VPN</string>
+    <string name="split_mode_exclude">ЧЕРНЫЙ СПИСОК</string>
+    <string name="split_mode_include">БЕЛЫЙ СПИСОК</string>
+    <string name="split_desc_all">Весь трафик смартфона направляется через зашифрованный туннель WhiteRTC.</string>
+    <string name="split_desc_exclude">Черный список: отмеченные приложения идут напрямую в обход VPN. Все остальные защищены туннелем.</string>
+    <string name="split_desc_include">Белый список: ТОЛЬКО отмеченные приложения идут через туннель VPN. Все остальные идут напрямую.</string>
+    <string name="split_search_hint">Поиск по названию или пакету...</string>
+    <string name="split_filter_system">Системные</string>
+    <string name="split_filter_all">Все</string>
+    <string name="split_filter_clear">Снять</string>
+    <string name="split_filter_invert">Инверсия</string>
+    <string name="split_loading">Загрузка списка приложений...</string>
+    <string name="split_disabled_title">РАЗДЕЛЬНОЕ ТУННЕЛИРОВАНИЕ ОТКЛЮЧЕНО</string>
+    <string name="split_disabled_desc">Выберите «ЧЕРНЫЙ СПИСОК» или «БЕЛЫЙ СПИСОК» выше, чтобы настроить индивидуальную маршрутизацию приложений.</string>
+    <string name="split_empty">Приложения не найдены</string>
+    <string name="split_system_badge">SYS</string>
+
+    <!-- Connection Profiles Sheet -->
+    <string name="profile_sheet_title">ПОДКЛЮЧЕНИЯ</string>
+    <string name="profile_sheet_subtitle">ВЫБЕРИТЕ АКТИВНЫЙ УЗЕЛ ИЛИ ДОБАВЬТЕ НОВЫЙ</string>
+    <string name="profile_sheet_empty">// НЕТ СОХРАНЕННЫХ ПОДКЛЮЧЕНИЙ</string>
+    <string name="profile_sheet_btn_add">+ ДОБАВИТЬ ПОДКЛЮЧЕНИЕ</string>
+    <string name="profile_sheet_new_title">НОВОЕ ПОДКЛЮЧЕНИЕ</string>
+    <string name="profile_sheet_new_subtitle">ВСТАВЬТЕ ССЫЛКУ white:// ИЛИ ССЫЛКУ ПОДПИСКИ</string>
+    <string name="profile_sheet_input_label">ССЫЛКА white:// ИЛИ ПОДПИСКА</string>
+    <string name="profile_sheet_btn_paste">[ ВСТАВИТЬ ]</string>
+    <string name="profile_sheet_relay_title">ПРОМЕЖУТОЧНЫЙ РЕЛЕЙ</string>
+    <string name="profile_sheet_relay_desc">Пересылка трафика к серверу через промежуточный узел при потере прямого соединения</string>
+    <string name="profile_sheet_relay_server">ПРОМЕЖУТОЧНЫЙ СЕРВЕР</string>
+    <string name="profile_sheet_relay_server_fmt">ПРОМЕЖУТОЧНЫЙ СЕРВЕР (%1$s)</string>
+    <string name="profile_sheet_sub_title">ЕДИНАЯ ПОДПИСКА</string>
+    <string name="profile_sheet_sub_desc">Устройство будет автоматически зарегистрировано на сервере</string>
+    <string name="profile_sheet_err_format">// НЕКОРРЕКТНЫЙ ФОРМАТ ССЫЛКИ</string>
+    <string name="profile_sheet_err_relay_format">Неизвестный формат ссылки релея</string>
+    <string name="profile_sheet_resolving">РЕГИСТРАЦИЯ...</string>
+    <string name="profile_sheet_err_resolve">ОШИБКА ПОДКЛЮЧЕНИЯ К СЕРВЕРУ ПОДПИСКИ</string>
+    <string name="profile_sheet_no_address">АДРЕС НЕ ЗАДАН</string>
+    <string name="profile_sheet_edit_desc">Редактировать подключение</string>
+    <string name="profile_sheet_delete_desc">Удалить подключение</string>
+    <string name="profile_sheet_backup_title">НАСТРОЙКА РЕЗЕРВА</string>
+    <string name="profile_sheet_backup_subtitle">НАСТРОЙКА РЕЗЕРВНОГО МАРШРУТА</string>
+    <string name="profile_sheet_channels_title">КОЛИЧЕСТВО ПОТОКОВ</string>
+    <string name="profile_sheet_channels_desc">Количество параллельных WebRTC-потоков для балансировки трафика. Больше потоков — выше пропускная способность и стабильность соединения.</string>
+    <string name="profile_sheet_ports_fmt"> • %1$d портов</string>
+    <string name="profile_sheet_streams_fmt"> • %1$d потоков</string>
+    <string name="profile_speed_eco_fmt">ЭКО (~%1$d Мбит/с)</string>
+    <string name="profile_speed_standard_fmt">СТАНДАРТ (~%1$d Мбит/с)</string>
+    <string name="profile_speed_balance_fmt">БАЛАНС (~%1$d Мбит/с)</string>
+    <string name="profile_speed_high_fmt">ВЫСОКАЯ (~%1$d Мбит/с)</string>
+    <string name="profile_speed_turbo_fmt">ТУРБО (~%1$d Мбит/с)</string>
+    <string name="profile_sheet_channels_count_fmt">%1$d потоков</string>
+    <string name="profile_sheet_pacing_default_fmt">%1$d параллельных потоков подключаются сразу без риска блокировки.</string>
+
+    <!-- Speed Test Progress Steps -->
+    <string name="speedtest_step_prep_direct">Подготовка физической сети (отключение VPN)...</string>
+    <string name="speedtest_step_direct_probe">Прямой замер (Direct #%1$d/%2$d): TWAMP Probe...</string>
+    <string name="speedtest_step_direct_down">Прямой замер (Direct #%1$d/%2$d): Download...</string>
+    <string name="speedtest_step_direct_up">Прямой замер (Direct #%1$d/%2$d): Upload...</string>
+    <string name="speedtest_step_direct_done">Direct #%1$d завершен</string>
+    <string name="speedtest_step_prep_vpn">Подключение многоканального VPN туннеля...</string>
+    <string name="speedtest_step_vpn_probe">VPN замер (Overlay #%1$d/%2$d): TWAMP Probe...</string>
+    <string name="speedtest_step_vpn_down">VPN замер (Overlay #%1$d/%2$d): Download...</string>
+    <string name="speedtest_step_vpn_up">VPN замер (Overlay #%1$d/%2$d): Upload...</string>
+    <string name="speedtest_step_vpn_done">VPN #%1$d завершен</string>
+
+    <!-- ViewModel Feedback & Effects -->
+    <string name="profile_select_error">Ошибка выбора профиля</string>
+    <string name="profile_save_error">Ошибка сохранения профиля</string>
+    <string name="profile_delete_error">Ошибка удаления профиля</string>
+    <string name="server_not_configured">Сервер не настроен (выберите профиль)</string>
+    <string name="plugin_installed_fmt">Плагин установлен: %1$s</string>
+    <string name="plugin_install_error_fmt">Ошибка установки: %1$s</string>
+    <string name="plugin_deleted">Плагин удален</string>
+    <string name="logs_cleared">Логи очищены</string>
+    <string name="rule_template_saved_fmt">Шаблон «%1$s» сохранен</string>
+    <string name="rule_template_deleted">Шаблон удален</string>
+    <string name="routing_reset_default">Настройки маршрутизации сброшены по умолчанию</string>
+    <string name="default_rule_name">Новое правило</string>
+</resources>

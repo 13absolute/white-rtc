@@ -1,0 +1,25 @@
+[
+  {
+    "name": "com.whitertc.daemon.tun.LinuxCLibrary",
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "com.whitertc.daemon.tun.LinuxCLibrary$IfReq",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true
+  },
+  {
+    "name": "com.whitertc.daemon.tun.LinuxCLibrary$PollFd",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true
+  }
+]

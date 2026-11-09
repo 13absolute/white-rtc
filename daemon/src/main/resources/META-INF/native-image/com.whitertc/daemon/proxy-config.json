@@ -1,0 +1,6 @@
+[
+  [
+    "com.whitertc.daemon.tun.LinuxCLibrary",
+    "com.sun.jna.Library"
+  ]
+]

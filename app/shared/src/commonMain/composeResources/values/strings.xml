@@ -1,0 +1,234 @@
+<resources>
+    <!-- Non-translatable Identifiers -->
+    <string name="app_name" translatable="false">WhiteRTC</string>
+    <string name="protocol_name" translatable="false">WhiteRTC Multi-stream</string>
+    <string name="protocol_standards" translatable="false">RFC 7983 / 7675 / 5766</string>
+    <string name="codec_opus" translatable="false">OPUS</string>
+    <string name="codec_vp8" translatable="false">VP8</string>
+    <string name="unit_ms" translatable="false">ms</string>
+    <string name="link_scheme_white" translatable="false">white://</string>
+
+    <!-- Common -->
+    <string name="common_ok">OK</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_save">Save</string>
+    <string name="common_delete">Delete</string>
+    <string name="common_retry">Retry</string>
+    <string name="common_close">Close</string>
+    <string name="common_loading">Loading...</string>
+    <string name="common_paste">Paste</string>
+    <string name="common_clear">Clear</string>
+    <string name="common_copy">Copy</string>
+    <string name="common_copied">COPIED</string>
+    <string name="common_back">Back</string>
+    <string name="common_add">Add</string>
+    <string name="common_edit">Edit</string>
+    <string name="common_not_set">not set</string>
+    <string name="common_details">Details</string>
+    <string name="common_expand">Expand</string>
+    <string name="common_collapse">Collapse</string>
+
+    <!-- Main Screen & Connection Hero -->
+    <string name="main_settings_desc">Settings</string>
+    <string name="hero_secured">SECURED</string>
+    <string name="hero_disconnect">DISCONNECT</string>
+    <string name="hero_syncing">SYNCING</string>
+    <string name="hero_channels_fmt">%1$d CHANNELS</string>
+    <string name="hero_connect">CONNECT</string>
+    <string name="hero_retry">RETRY</string>
+    <string name="hero_tap_to_start">TAP TO START</string>
+    <string name="hero_tap_to_reconnect">TAP TO RECONNECT</string>
+    <string name="hero_target_label">TARGET:</string>
+    <string name="hero_tap_to_select_server">TAP TO SELECT SERVER</string>
+
+    <!-- Telemetry & Metrics -->
+    <string name="telemetry_tab_traffic">TRAFFIC</string>
+    <string name="telemetry_tab_channels">CHANNELS</string>
+    <string name="telemetry_btn_streams_fmt">STREAMS (%1$d) ⇄</string>
+    <string name="telemetry_btn_traffic">TRAFFIC ⇄</string>
+    <string name="telemetry_downlink">DOWNLINK</string>
+    <string name="telemetry_uplink">UPLINK</string>
+    <string name="telemetry_session_volume">SESSION VOLUME</string>
+    <string name="telemetry_total_packets">TOTAL PACKETS</string>
+    <string name="telemetry_details_btn">DETAILS →</string>
+    <string name="telemetry_network_title">NETWORK TELEMETRY</string>
+    <string name="telemetry_subflows_fmt">%1$d WEBRTC SUBFLOWS</string>
+    <string name="telemetry_summary_fmt">%1$d ACTIVE • 0 LOSS • %2$dB MTU</string>
+    <string name="telemetry_in">IN</string>
+    <string name="telemetry_out">OUT</string>
+    <string name="telemetry_framing">FRAMING</string>
+    <string name="telemetry_cipher">CIPHER</string>
+
+    <!-- Speed Test Benchmark -->
+    <string name="speedtest_title">THROUGHPUT BENCHMARK</string>
+    <string name="speedtest_btn_start">TEST SPEED →</string>
+    <string name="speedtest_btn_retest">RETEST →</string>
+    <string name="speedtest_btn_retry">RETRY</string>
+    <string name="speedtest_status_pass">PASS</string>
+    <string name="speedtest_efficiency_fmt">EFFICIENCY: %1$s%%</string>
+    <string name="speedtest_raw_vpn_fmt">RAW: %1$sM • VPN: %2$sM</string>
+    <string name="speedtest_live_fmt">LIVE: DL %1$s | UL %2$s</string>
+    <string name="speedtest_error_fmt">ERROR: %1$s</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">SETTINGS</string>
+    <string name="settings_hotspot_title">PROXY SHARING (SOCKS5 / HTTP)</string>
+    <string name="settings_hotspot_desc">Share secure tunnel to other devices via Wi-Fi Hotspot</string>
+    <string name="settings_hotspot_active">HOTSPOT ACTIVE</string>
+    <string name="settings_hotspot_client_url">CLIENT CONNECTION STRING</string>
+    <string name="settings_hotspot_ip_label">WI-FI IP ADDRESS</string>
+    <string name="settings_hotspot_port_label">PROXY SERVER PORT</string>
+    <string name="settings_hotspot_mode_label">MODE</string>
+    <string name="settings_hotspot_mode_val" translatable="false">Mixed SOCKS5 + HTTP CONNECT</string>
+    <string name="settings_hotspot_hint">💡 Enter this proxy address in the client device settings (laptop, TV, console). Traffic will be routed through the encrypted phone tunnel.</string>
+    <string name="settings_hotspot_inactive">HOTSPOT INACTIVE</string>
+    <string name="settings_hotspot_inactive_desc">Proxy server is listening on port %1$d. Turn on «Wi-Fi Hotspot» on your phone so client devices can connect to this network.</string>
+    <string name="settings_hotspot_btn">HOTSPOT SETTINGS</string>
+    <string name="settings_rules_title">RULES &amp; RELAY</string>
+    <string name="settings_rules_desc">Provider whitelist templates, forced relay, and direct channel.</string>
+    <string name="settings_mode_direct">Direct</string>
+    <string name="settings_mode_relay">Relay</string>
+    <string name="settings_bypass_lan_title">BYPASS LOCAL NETWORK</string>
+    <string name="settings_bypass_lan_desc">Exclude private IPs (192.168.x.x, 10.x.x.x, 172.16.x.x) from tunnel for direct access to router, printers, and LAN servers.</string>
+    <string name="settings_split_tunneling_title">SPLIT TUNNELING</string>
+    <string name="settings_split_all">All application traffic is routed through VPN</string>
+    <string name="settings_split_exclude_fmt">Blacklist: %1$d apps bypass VPN</string>
+    <string name="settings_split_include_fmt">Whitelist: %1$d apps route through VPN</string>
+    <string name="settings_plugins_title">RELAY PLUGINS</string>
+    <string name="settings_plugins_desc">External modules for intermediate traffic relay</string>
+    <string name="settings_plugins_empty">No installed plugins</string>
+    <string name="settings_plugins_builtin">Built-in</string>
+    <string name="settings_plugins_external">External module</string>
+    <string name="settings_plugins_install_btn">+ INSTALL PLUGIN</string>
+    <string name="settings_plugins_delete_desc">Delete plugin</string>
+    <string name="settings_plugins_install_error">Plugin installation error</string>
+    <string name="settings_debug_title">DEBUG &amp; DIAGNOSTICS</string>
+    <string name="settings_debug_desc">Record verbose network logs (STUN, DTLS, relays, probes) to debug_log.txt</string>
+    <string name="settings_debug_log_size">LOG FILE SIZE</string>
+    <string name="settings_debug_mode">RECORDING MODE</string>
+    <string name="settings_debug_mode_desc">Ring-Buffer (2 MB limit with autorotation)</string>
+    <string name="settings_debug_download">DOWNLOAD LOGS</string>
+    <string name="settings_debug_clear">CLEAR</string>
+    <string name="settings_debug_hint">💡 Logs are saved to debug_log.txt. Tap «DOWNLOAD LOGS» to share the file for diagnostics.</string>
+    <string name="settings_about_title">ABOUT</string>
+    <string name="settings_about_version">VERSION</string>
+    <string name="settings_about_protocol">PROTOCOL</string>
+    <string name="settings_about_standards">STANDARDS</string>
+    <string name="settings_about_platform">PLATFORM</string>
+    <string name="settings_about_github">GITHUB</string>
+    <string name="settings_about_github_url" translatable="false">https://github.com/13absolute/white-rtc</string>
+    <string name="settings_donate_btc_title">SUPPORT PROJECT (BTC)</string>
+    <string name="settings_donate_btc_desc">Donation for WhiteRTC infrastructure &amp; development</string>
+    <string name="settings_donate_btc_copied">Bitcoin address copied to clipboard</string>
+
+    <!-- Routing Rules Screen -->
+    <string name="routing_title">RULES &amp; RELAY</string>
+    <string name="routing_desc">Routing policy defines how traffic travels: directly to VPS, via secure intermediate relay, or adaptively by template rules.</string>
+    <string name="routing_mode_title">ROUTING MODE</string>
+    <string name="routing_mode_template_title">TEMPLATE RULES</string>
+    <string name="routing_mode_template_desc">Direct connection to server with automated failover to relay based on active template conditions.</string>
+    <string name="routing_mode_direct_title">DIRECT CHANNEL ONLY</string>
+    <string name="routing_mode_direct_desc">Strictly direct connection to server over parallel UDP ports. Backup relays are completely disabled.</string>
+    <string name="routing_mode_relay_title">RELAY ONLY</string>
+    <string name="routing_mode_relay_desc">All traffic is routed through an intermediate server (TURN / VK Calls). Direct VPS IP is concealed.</string>
+    <string name="routing_templates_title">TEMPLATES &amp; RULES</string>
+    <string name="routing_btn_add">+ ADD RULE</string>
+    <string name="routing_default_tag">· default</string>
+    <string name="routing_spec_if_unreachable">IF UNREACHABLE</string>
+    <string name="routing_spec_if_reachable">AND REACHABLE</string>
+    <string name="routing_spec_action">ACTION</string>
+    <string name="routing_spec_action_val">Relay (recovery: %1$ds)</string>
+    <string name="routing_new_rule_title">NEW RULE</string>
+    <string name="routing_edit_rule_title">EDIT RULE</string>
+    <string name="routing_template_name_label">TEMPLATE NAME</string>
+    <string name="routing_template_name_hint">e.g. Mobile Internet</string>
+    <string name="routing_unreachable_title">CANARY FOREIGN HOSTS</string>
+    <string name="routing_unreachable_desc">External canary hosts. If unreachable, triggers failover.</string>
+    <string name="routing_host_hint">domain.com or IP</string>
+    <string name="routing_reachable_title">CANARY DOMESTIC HOSTS</string>
+    <string name="routing_reachable_desc">Trusted domestic hosts. If available while external are blocked, activates backup relay.</string>
+    <string name="routing_probe_timeout">PROBE TIMEOUT</string>
+    <string name="routing_recovery_interval">RELAY RECOVERY INTERVAL</string>
+    <string name="routing_default_name">Rule</string>
+
+    <!-- Split Tunneling Screen -->
+    <string name="split_title">APP ROUTING</string>
+    <string name="split_mode_all">ALL IN VPN</string>
+    <string name="split_mode_exclude">BLACKLIST</string>
+    <string name="split_mode_include">WHITELIST</string>
+    <string name="split_desc_all">All smartphone traffic is routed through the encrypted WhiteRTC tunnel.</string>
+    <string name="split_desc_exclude">Blacklist: selected applications bypass VPN directly. All others are protected by the tunnel.</string>
+    <string name="split_desc_include">Whitelist: ONLY selected applications route through VPN tunnel. All others bypass.</string>
+    <string name="split_search_hint">Search by name or package...</string>
+    <string name="split_filter_system">System</string>
+    <string name="split_filter_all">All</string>
+    <string name="split_filter_clear">Clear</string>
+    <string name="split_filter_invert">Invert</string>
+    <string name="split_loading">Loading applications list...</string>
+    <string name="split_disabled_title">SPLIT TUNNELING DISABLED</string>
+    <string name="split_disabled_desc">Select «BLACKLIST» or «WHITELIST» above to configure custom per-app routing.</string>
+    <string name="split_empty">No applications found</string>
+    <string name="split_system_badge">SYS</string>
+
+    <!-- Connection Profiles Sheet -->
+    <string name="profile_sheet_title">CONNECTIONS</string>
+    <string name="profile_sheet_subtitle">SELECT ACTIVE NODE OR ADD A NEW ONE</string>
+    <string name="profile_sheet_empty">// NO SAVED CONNECTIONS</string>
+    <string name="profile_sheet_btn_add">+ ADD CONNECTION</string>
+    <string name="profile_sheet_new_title">NEW CONNECTION</string>
+    <string name="profile_sheet_new_subtitle">PASTE white:// LINK OR SUBSCRIPTION URL</string>
+    <string name="profile_sheet_input_label">white:// LINK OR SUBSCRIPTION</string>
+    <string name="profile_sheet_btn_paste">[ PASTE ]</string>
+    <string name="profile_sheet_relay_title">INTERMEDIATE RELAY</string>
+    <string name="profile_sheet_relay_desc">Relay traffic to server through intermediate node when direct connection fails</string>
+    <string name="profile_sheet_relay_server">INTERMEDIATE SERVER</string>
+    <string name="profile_sheet_relay_server_fmt">INTERMEDIATE SERVER (%1$s)</string>
+    <string name="profile_sheet_sub_title">UNIFIED SUBSCRIPTION</string>
+    <string name="profile_sheet_sub_desc">Device will be automatically registered on the server</string>
+    <string name="profile_sheet_err_format">// INVALID LINK FORMAT</string>
+    <string name="profile_sheet_err_relay_format">Unknown relay link format</string>
+    <string name="profile_sheet_resolving">REGISTRATION...</string>
+    <string name="profile_sheet_err_resolve">ERROR CONNECTING TO SUBSCRIPTION SERVER</string>
+    <string name="profile_sheet_no_address">ADDRESS NOT SET</string>
+    <string name="profile_sheet_edit_desc">Edit connection</string>
+    <string name="profile_sheet_delete_desc">Delete connection</string>
+    <string name="profile_sheet_backup_title">BACKUP ROUTE SETUP</string>
+    <string name="profile_sheet_backup_subtitle">BACKUP ROUTE CONFIGURATION</string>
+    <string name="profile_sheet_channels_title">NUMBER OF STREAMS</string>
+    <string name="profile_sheet_channels_desc">Number of parallel WebRTC streams for traffic balancing. More streams provide higher throughput and connection stability.</string>
+    <string name="profile_sheet_ports_fmt"> • %1$d ports</string>
+    <string name="profile_sheet_streams_fmt"> • %1$d streams</string>
+    <string name="profile_speed_eco_fmt">ECO (~%1$d Mbps)</string>
+    <string name="profile_speed_standard_fmt">STANDARD (~%1$d Mbps)</string>
+    <string name="profile_speed_balance_fmt">BALANCE (~%1$d Mbps)</string>
+    <string name="profile_speed_high_fmt">HIGH (~%1$d Mbps)</string>
+    <string name="profile_speed_turbo_fmt">TURBO (~%1$d Mbps)</string>
+    <string name="profile_sheet_channels_count_fmt">%1$d streams</string>
+    <string name="profile_sheet_pacing_default_fmt">%1$d parallel streams connect immediately without blocking risk.</string>
+
+    <!-- Speed Test Progress Steps -->
+    <string name="speedtest_step_prep_direct">Preparing physical network (disconnecting VPN)...</string>
+    <string name="speedtest_step_direct_probe">Direct probe (Direct #%1$d/%2$d): TWAMP Probe...</string>
+    <string name="speedtest_step_direct_down">Direct measurement (Direct #%1$d/%2$d): Download...</string>
+    <string name="speedtest_step_direct_up">Direct measurement (Direct #%1$d/%2$d): Upload...</string>
+    <string name="speedtest_step_direct_done">Direct #%1$d completed</string>
+    <string name="speedtest_step_prep_vpn">Connecting multi-channel VPN tunnel...</string>
+    <string name="speedtest_step_vpn_probe">VPN measurement (Overlay #%1$d/%2$d): TWAMP Probe...</string>
+    <string name="speedtest_step_vpn_down">VPN measurement (Overlay #%1$d/%2$d): Download...</string>
+    <string name="speedtest_step_vpn_up">VPN measurement (Overlay #%1$d/%2$d): Upload...</string>
+    <string name="speedtest_step_vpn_done">VPN #%1$d completed</string>
+
+    <!-- ViewModel Feedback & Effects -->
+    <string name="profile_select_error">Failed to select profile</string>
+    <string name="profile_save_error">Failed to save profile</string>
+    <string name="profile_delete_error">Failed to delete profile</string>
+    <string name="server_not_configured">Server not configured (select profile)</string>
+    <string name="plugin_installed_fmt">Plugin installed: %1$s</string>
+    <string name="plugin_install_error_fmt">Installation error: %1$s</string>
+    <string name="plugin_deleted">Plugin removed</string>
+    <string name="logs_cleared">Logs cleared</string>
+    <string name="rule_template_saved_fmt">Template «%1$s» saved</string>
+    <string name="rule_template_deleted">Template deleted</string>
+    <string name="routing_reset_default">Routing settings reset to default</string>
+    <string name="default_rule_name">New rule</string>
+</resources>

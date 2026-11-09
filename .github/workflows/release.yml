@@ -1,0 +1,79 @@
+name: Release WhiteRTC Apps
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name for release (e.g. v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build & Release Clients (Android & Linux Desktop)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Accept Android SDK licenses
+        run: |
+          yes | sdkmanager --licenses 2>/dev/null || true
+
+      - name: Build Android App & Desktop App
+        run: |
+          chmod +x gradlew build_daemon_native.sh
+          ./gradlew :app:androidApp:assembleDebug :desktopApp:packageDeb --no-daemon
+
+      - name: Build Native Linux Daemon
+        run: |
+          ./build_daemon_native.sh
+
+      - name: Prepare Release Assets
+        run: |
+          mkdir -p release-assets
+          
+          # Android APK
+          if [ -f app/androidApp/build/outputs/apk/release/androidApp-release.apk ]; then
+            cp app/androidApp/build/outputs/apk/release/androidApp-release.apk release-assets/WhiteRTC-Android.apk
+          elif [ -f app/androidApp/build/outputs/apk/debug/androidApp-debug.apk ]; then
+            cp app/androidApp/build/outputs/apk/debug/androidApp-debug.apk release-assets/WhiteRTC-Android.apk
+          fi
+
+          # Linux Deb Package
+          find desktopApp/build/compose/binaries/main/deb -name "*.deb" -exec cp {} release-assets/WhiteRTC-Linux.deb \; 2>/dev/null || true
+
+          # Native Linux Daemon
+          if [ -f daemon/build/native/nativeCompile/whitertc-daemon ]; then
+            cp daemon/build/native/nativeCompile/whitertc-daemon release-assets/whitertc-daemon
+            chmod +x release-assets/whitertc-daemon
+          fi
+
+          cd release-assets
+          sha256sum * > sha256sums.txt
+          ls -la
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.tag_name || github.ref_name }}
+          name: "WhiteRTC Apps Release ${{ github.event.inputs.tag_name || github.ref_name }}"
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: release-assets/*
