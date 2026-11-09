@@ -1,4 +1,4 @@
-name: Release WhiteRTC Apps
+name: Release WhiteRTC Apps & CLI
 
 on:
   push:
@@ -15,8 +15,8 @@ permissions:
   contents: write
 
 jobs:
-  build-and-release:
-    name: Build & Release Clients (Android & Linux Desktop)
+  build-android-linux:
+    name: Build Android, Linux Desktop & CLI
     runs-on: ubuntu-latest
 
     steps:
@@ -51,43 +51,108 @@ jobs:
             echo "No KEYSTORE_BASE64 provided, skipping release signing."
           fi
 
-
-      - name: Build Android App & Desktop App
+      - name: Build Android App, Linux Desktop & CLI Fat JAR
         run: |
           chmod +x gradlew build_daemon_native.sh
           if [ -f "keystore.properties" ]; then
-            echo "==> Building signed Release APK..."
-            ./gradlew :app:androidApp:assembleRelease :desktopApp:packageDeb --no-daemon
+            echo "==> Building signed Release APK, Linux DEB, and CLI Fat JAR..."
+            ./gradlew :app:androidApp:assembleRelease :desktopApp:packageDeb :daemon:fatJar --no-daemon
           else
-            echo "==> Building Debug APK (no keystore provided)..."
-            ./gradlew :app:androidApp:assembleDebug :desktopApp:packageDeb --no-daemon
+            echo "==> Building Debug APK, Linux DEB, and CLI Fat JAR..."
+            ./gradlew :app:androidApp:assembleDebug :desktopApp:packageDeb :daemon:fatJar --no-daemon
           fi
 
-
-      - name: Build Native Linux Daemon
+      - name: Build Native Linux Daemon & CLI
         run: |
           ./build_daemon_native.sh
 
-      - name: Prepare Release Assets
+      - name: Collect Linux & Android Artifacts
         run: |
-          mkdir -p release-assets
+          mkdir -p dist-linux
           
           # Android APK
           if [ -f app/androidApp/build/outputs/apk/release/androidApp-release.apk ]; then
-            cp app/androidApp/build/outputs/apk/release/androidApp-release.apk release-assets/WhiteRTC-Android.apk
+            cp app/androidApp/build/outputs/apk/release/androidApp-release.apk dist-linux/WhiteRTC-Android.apk
           elif [ -f app/androidApp/build/outputs/apk/debug/androidApp-debug.apk ]; then
-            cp app/androidApp/build/outputs/apk/debug/androidApp-debug.apk release-assets/WhiteRTC-Android.apk
+            cp app/androidApp/build/outputs/apk/debug/androidApp-debug.apk dist-linux/WhiteRTC-Android.apk
           fi
 
           # Linux Deb Package
-          find desktopApp/build/compose/binaries/main/deb -name "*.deb" -exec cp {} release-assets/WhiteRTC-Linux.deb \; 2>/dev/null || true
+          find desktopApp/build/compose/binaries/main/deb -name "*.deb" -exec cp {} dist-linux/WhiteRTC-Linux.deb \; 2>/dev/null || true
 
-          # Native Linux Daemon
-          if [ -f daemon/build/native/nativeCompile/whitertc-daemon ]; then
-            cp daemon/build/native/nativeCompile/whitertc-daemon release-assets/whitertc-daemon
-            chmod +x release-assets/whitertc-daemon
+          # CLI / Daemon Fat JAR (Runs on any OS with Java 21+)
+          if [ -f daemon/build/libs/daemon-1.0.0-all.jar ]; then
+            cp daemon/build/libs/daemon-1.0.0-all.jar dist-linux/whitertc-cli.jar
+          elif [ -f daemon/build/libs/*-all.jar ]; then
+            cp daemon/build/libs/*-all.jar dist-linux/whitertc-cli.jar
           fi
 
+          # Native Linux Daemon Binary
+          if [ -f daemon/build/native/nativeCompile/whitertc-daemon ]; then
+            cp daemon/build/native/nativeCompile/whitertc-daemon dist-linux/whitertc-daemon
+            chmod +x dist-linux/whitertc-daemon
+          fi
+
+          ls -la dist-linux/
+
+      - name: Upload Linux & Android Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-linux-android
+          path: dist-linux/*
+          retention-days: 1
+
+  build-windows:
+    name: Build Windows Desktop (.exe & .msi)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Build Windows Desktop (.exe & .msi)
+        shell: bash
+        run: |
+          ./gradlew :desktopApp:packageMsi :desktopApp:packageExe --no-daemon
+
+      - name: Collect Windows Artifacts
+        shell: bash
+        run: |
+          mkdir -p dist-win
+          find desktopApp/build/compose/binaries/main/exe -name "*.exe" -exec cp {} dist-win/WhiteRTC-Windows.exe \; 2>/dev/null || true
+          find desktopApp/build/compose/binaries/main/msi -name "*.msi" -exec cp {} dist-win/WhiteRTC-Windows.msi \; 2>/dev/null || true
+          ls -la dist-win/
+
+      - name: Upload Windows Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-windows
+          path: dist-win/*
+          retention-days: 1
+
+  publish-release:
+    name: Publish Release to GitHub
+    needs: [build-android-linux, build-windows]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download all built artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: 'artifacts-*'
+          path: release-assets
+          merge-multiple: true
+
+      - name: Generate Checksums
+        run: |
           cd release-assets
           sha256sum * > sha256sums.txt
           ls -la
@@ -96,7 +161,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.event.inputs.tag_name || github.ref_name }}
-          name: "WhiteRTC Apps Release ${{ github.event.inputs.tag_name || github.ref_name }}"
+          name: "WhiteRTC Apps & CLI Release ${{ github.event.inputs.tag_name || github.ref_name }}"
           draft: false
           prerelease: false
           generate_release_notes: true

@@ -76,7 +76,7 @@ compose.desktop {
             windows {
                 menuGroup = "WhiteRTC"
                 upgradeUuid = "6c810d29-a1b2-4d53-93fb-98cb9b6cb592"
-                iconFile.set(project.file("../app/shared/src/commonMain/composeResources/drawable/app_icon.png"))
+                iconFile.set(project.file("src/jvmMain/resources/icons/app_icon.ico"))
             }
         }
     }
