@@ -36,21 +36,25 @@ jobs:
           yes | sdkmanager --licenses 2>/dev/null || true
 
       - name: Setup Android Keystore from GitHub Secrets
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          echo "$KEYSTORE_BASE64" | base64 -d > whitertc-release.jks
-          cat << EOF > keystore.properties
-          storeFile=whitertc-release.jks
-          storePassword=$KEYSTORE_PASSWORD
-          keyAlias=${KEY_ALIAS:-whitertc}
-          keyPassword=${KEY_PASSWORD:-$KEYSTORE_PASSWORD}
-          EOF
-          echo "Android signing credentials configured."
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 -d > whitertc-release.jks
+            cat << EOF > keystore.properties
+            storeFile=whitertc-release.jks
+            storePassword=$KEYSTORE_PASSWORD
+            keyAlias=${KEY_ALIAS:-whitertc}
+            keyPassword=${KEY_PASSWORD:-$KEYSTORE_PASSWORD}
+            EOF
+            echo "Android signing credentials configured."
+          else
+            echo "No KEYSTORE_BASE64 provided, skipping release signing."
+          fi
+
 
       - name: Build Android App & Desktop App
         run: |
