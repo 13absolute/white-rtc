@@ -1,6 +1,10 @@
 # WhiteRTC Client Applications 📱💻
 
-Cross-platform client applications (Android, Linux, Windows, macOS) and privileged system background daemon for the [WhiteRTC](https://github.com/13absolute/whitertc-core) high-performance L3 VPN overlay.
+<p align="left">
+  <strong>English</strong> • <a href="README.ru.md">Русский</a>
+</p>
+
+Cross-platform client applications (Android, Linux, Windows) and privileged system background daemon for the [WhiteRTC](https://github.com/13absolute/whitertc-core) high-performance L3 VPN overlay.
 
 ---
 
@@ -17,14 +21,14 @@ Cross-platform client applications (Android, Linux, Windows, macOS) and privileg
   * Deep link parsing (`white://...`) and QR code camera scanning
   * Per-app proxying / split tunneling
   * Hotspot tethering repeater support
-* **`:desktopApp`** — Desktop Compose application (Linux, Windows, macOS):
+* **`:desktopApp`** — Desktop Compose application (Linux, Windows, macOS preview):
   * Modern OLED dark theme UI
   * Inter-Process Communication (IPC) client communicating with `:daemon`
   * Packaging formats: Linux Debian (`.deb`), Windows (`.msi` / `.exe`)
 * **`:daemon`** — Privileged system background VPN service:
   * High-performance TUN device management (Linux `tun` / Windows `wintun`)
   * Real-time packet multiplexer and EAT (Early-Ack-Transmission) scheduler
-  * Local IPC server (`127.0.0.1:8088`) for unprivileged desktop UI communication
+  * Secure local IPC interface for unprivileged desktop UI communication
   * Dynamic relay provider discovery from `./plugins/` or system paths
 
 ---
@@ -35,13 +39,17 @@ Cross-platform client applications (Android, Linux, Windows, macOS) and privileg
 * JDK 21+
 * Android SDK (API 34+)
 
-### 1. Run Desktop Client
+### 1. Run Desktop Client (Unprivileged)
 ```bash
 ./gradlew runDesktop
 ```
 
-### 2. Run Background VPN Daemon
+### 2. Run Background VPN Daemon (Requires Root / Administrator)
 ```bash
+# Linux
+sudo ./gradlew runDaemon
+
+# Windows (Run terminal as Administrator)
 ./gradlew runDaemon
 ```
 
@@ -67,7 +75,7 @@ Output: `daemon/build/native/nativeCompile/whitertc-daemon`
 
 ## 🔌 Dynamic Relay Plugins
 
-To enable third-party relay providers (such as VK Video Calls TURN relays):
-1. Download `provider-vk-desktop.jar` or `provider-vk-android.apk` from [WhiteRTC Plugins Releases](https://github.com/13absolute/whitertc-plugins/releases).
-2. **Desktop:** Drop `provider-vk-desktop.jar` into `./plugins/` next to the executable, or `~/.whitertc/plugins/`.
+To enable external relay providers (such as third-party RFC 8656 TURN relays):
+1. Download the required provider plugin (`.jar` for Desktop or `.apk` for Android) from [WhiteRTC Plugins Releases](https://github.com/13absolute/whitertc-plugins/releases).
+2. **Desktop:** Place the `.jar` file into `./plugins/` next to the executable, or into `~/.whitertc/plugins/`.
 3. **Android:** Install or import the plugin file via the in-app Plugin Manager.
