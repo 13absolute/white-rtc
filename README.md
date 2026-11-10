@@ -79,3 +79,13 @@ To enable external relay providers (such as third-party RFC 8656 TURN relays):
 1. Download the required provider plugin (`.jar` for Desktop or `.apk` for Android) from [WhiteRTC Plugins Releases](https://github.com/13absolute/whitertc-plugins/releases).
 2. **Desktop:** Place the `.jar` file into `./plugins/` next to the executable, or into `~/.whitertc/plugins/`.
 3. **Android:** Install or import the plugin file via the in-app Plugin Manager.
+
+---
+
+## 📄 License & Terms of Use
+
+This project is licensed under the terms of the **[PolyForm Noncommercial License 1.0.0](LICENSE)**.
+
+> **Summary:**
+> You are free to inspect, study, test, modify, and build upon this software for **personal, research, and non-commercial purposes**.
+> Any commercial use, monetization, closed-source commercial redistribution, or using this software in commercial services is strictly prohibited without explicit commercial licensing from the author.
